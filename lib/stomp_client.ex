@@ -145,7 +145,7 @@ defmodule StompClient do
 
   def handle_call(:disconnect, _from, %State{sock: sock} = state) do
     {:ok, hostname} = :inet.gethostname
-    random = System.unique_integer(:positive)
+    random = System.unique_integer([:positive])
     disconnect_id = "#{hostname}-#{random}"
     
     message = "DISCONNECT\nreceipt:#{disconnect_id}\n\n\0"
